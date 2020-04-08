@@ -1,7 +1,11 @@
+/**
+ * SESSION CONTROLLER
+ */
 const connection = require('../database/connection');
 
 module.exports = {
 
+    //Creating
     async  create(req, res) {
 
         const { id } = req.body;

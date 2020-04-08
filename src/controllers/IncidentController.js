@@ -1,3 +1,6 @@
+/**
+ * INCIDENT CONTROLLER
+ */
 const connection = require('../database/connection');
 
 module.exports = {
@@ -20,9 +23,9 @@ module.exports = {
     },
     //Listing
     async list(req, res) {
-        const { page = 1 } = req.query;
+        const { page = 1 } = req.query;//paginação 
 
-        const [count] = await connection('incedents').count()
+        const [count] = await connection('incedents').count();//contando todos os casos registrado pela ong.
 
         const incidents = await connection('incedents')
             .join('ongs', 'ongs.id', '=', 'incedents.ong_id')
@@ -37,7 +40,7 @@ module.exports = {
                 'ongs.uf'
             ]);
 
-        res.header('X-Total-Count', count['count(*)'])
+        res.header('X-Total-Count', count['count(*)']);//enviando a resposta para o Header da resposta.
 
         return res.json(incidents);
     },
